@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<title>Yash's DEN</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav class="glass-nav">
+
+<h2 class="logo">Yash's DEN</h2>
+
+<div class="nav-links">
+
+<a href="/">Home</a>
+<a href="/about.html">About</a>
+<a href="#gallery">Portfolio</a>
+
+</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="hero-text">
+
+<span class="tag">
+PHOTOGRAPHER • VIDEOGRAPHER • CINEMATOGRAPHER
+</span>
+
+<h1>
+Visual Stories <br>
+Captured In Light
+</h1>
+
+<p>
+I'm Yash Patil, a photographer and videographer exploring the world one frame at a time — capturing emotions, moments, and memories through my lens.
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn" onclick="scrollToGallery()">
+Explore Portfolio
+</button>
+
+<a class="insta-btn" href="https://instagram.com/me_n_yashp" target="_blank">
+
+<i class="fa-brands fa-instagram"></i>
+
+Instagram
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-img">
+
+<img src="/images/hero/yash.jpg" alt="Yash Patil">
+
+</div>
+
+</section>
+
+<section class="hero-card reveal">
+
+<div class="glass-card">
+
+<h2>Featured Work</h2>
+
+<p>
+A collection of moments captured through my lens — from vibrant festivals and cinematic street frames to creative portraits and storytelling visuals.
+</p>
+
+</div>
+
+</section>
+<div class="filters reveal">
+
+<button onclick="filterGallery('all')">All</button>
+<button onclick="filterGallery('portraits')">Portraits</button>
+<button onclick="filterGallery('events')">Events</button>
+<button onclick="filterGallery('cosplay')">Cosplay</button>
+<button onclick="filterGallery('videos')">Videos</button>
+
+</div>
+
+
+<div id="gallery" class="gallery"></div>
+
+
+<div id="viewer" class="viewer">
+
+<button class="back-btn" onclick="closeViewer()">←</button>
+
+<img id="viewerImg">
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
