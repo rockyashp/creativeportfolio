@@ -1,4 +1,12 @@
+/* =====================================================
+   STORE GALLERY DATA
+===================================================== */
 let imagesData = {}
+
+
+/* =====================================================
+   FETCH IMAGE DATA FROM BACKEND
+===================================================== */
 
 fetch("/api/gallery")
 .then(res => res.json())
@@ -6,18 +14,25 @@ fetch("/api/gallery")
 
 imagesData = data
 
-// remove hero folder so hero image never appears in gallery
+// Remove hero folder so hero image does not appear in gallery
 delete imagesData.hero
 
+// Load all images by default
 loadGallery("all")
 
 })
 
 
 
+/* =====================================================
+   LOAD GALLERY ITEMS
+===================================================== */
+
 function loadGallery(category){
 
 const gallery = document.getElementById("gallery")
+
+// Clear previous images
 gallery.innerHTML = ""
 
 Object.keys(imagesData).forEach(cat => {
@@ -30,37 +45,50 @@ let card = document.createElement("div")
 card.className = "card"
 
 
-// VIDEO SECTION
+
+/* ================= VIDEO SECTION ================= */
+
 if(cat === "videos"){
 
 let video = document.createElement("video")
 
 video.src = "/images/" + cat + "/" + file
+
 video.controls = true
 video.loop = true
 video.muted = true
+video.playsInline = true
 
 card.appendChild(video)
 
 }
 
 
-// IMAGE SECTION
+
+/* ================= IMAGE SECTION ================= */
+
 else{
 
 let img = document.createElement("img")
 
 img.src = "/images/" + cat + "/" + file
+
+// Lazy loading improves performance
 img.loading = "lazy"
 
+// Open fullscreen viewer when clicked
 img.onclick = () => openViewer(img.src)
 
 card.appendChild(img)
 
 }
 
+
+
+// Add card to gallery
 gallery.appendChild(card)
 
+// Add tilt animation
 addTiltEffect(card)
 
 })
@@ -73,6 +101,10 @@ addTiltEffect(card)
 
 
 
+/* =====================================================
+   FILTER BUTTON HANDLER
+===================================================== */
+
 function filterGallery(category){
 
 loadGallery(category)
@@ -81,7 +113,9 @@ loadGallery(category)
 
 
 
-/* FULLSCREEN VIEWER */
+/* =====================================================
+   FULLSCREEN IMAGE VIEWER
+===================================================== */
 
 function openViewer(src){
 
@@ -91,11 +125,11 @@ viewer.style.display = "flex"
 
 document.getElementById("viewerImg").src = src
 
-// hide navbar
+// Hide navbar
 const nav = document.querySelector(".glass-nav")
 if(nav) nav.style.display = "none"
 
-// disable page scroll
+// Disable scrolling
 document.body.style.overflow = "hidden"
 
 }
@@ -108,18 +142,20 @@ const viewer = document.getElementById("viewer")
 
 viewer.style.display = "none"
 
-// show navbar again
+// Show navbar again
 const nav = document.querySelector(".glass-nav")
 if(nav) nav.style.display = "flex"
 
-// enable scrolling again
+// Enable scrolling
 document.body.style.overflow = "auto"
 
 }
 
 
 
-/* ESC KEY CLOSE */
+/* =====================================================
+   ESC KEY CLOSE VIEWER
+===================================================== */
 
 document.addEventListener("keydown", function(e){
 
@@ -133,7 +169,9 @@ closeViewer()
 
 
 
-/* SCROLL BUTTON */
+/* =====================================================
+   HERO BUTTON SCROLL
+===================================================== */
 
 function scrollToGallery(){
 
@@ -148,7 +186,9 @@ behavior: "smooth"
 
 
 
-/* 3D PHOTO HOVER EFFECT */
+/* =====================================================
+   3D HOVER TILT EFFECT
+===================================================== */
 
 function addTiltEffect(card){
 
@@ -180,7 +220,9 @@ card.style.transform = "rotateX(0) rotateY(0)"
 
 
 
-/* CINEMATIC SCROLL REVEAL */
+/* =====================================================
+   SCROLL REVEAL ANIMATION
+===================================================== */
 
 function reveal(){
 
@@ -201,4 +243,5 @@ reveals[i].classList.add("active")
 
 }
 
+// Run reveal on scroll
 window.addEventListener("scroll", reveal)
