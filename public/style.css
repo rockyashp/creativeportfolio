@@ -100,7 +100,7 @@ align-items:center;
 justify-content:space-between;
 
 padding:120px;
-
+ margin: 40px 0;
 gap:40px;
 
 }
@@ -203,7 +203,7 @@ transform:scale(1.05) rotateY(6deg);
 display:flex;
 justify-content:center;
 
-margin:20px 0;
+margin: 80px 0;
 
 }
 
