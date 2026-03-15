@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Yash's DEN</title>
 
+<!-- Font Awesome Icons -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Main Styles -->
 <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
+<!-- ================= NAVBAR ================= -->
+
 <nav class="glass-nav">
 
-<h2 class="logo">Yash's DEN</h2>
+<h2 class="logo">Yash Studio</h2>
 
-<div class="nav-links">
+<div class="nav-links" id="navLinks">
 
 <a href="/">Home</a>
 <a href="/about.html">About</a>
@@ -24,8 +33,19 @@
 
 </div>
 
+<div class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu">
+
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
 </nav>
 
+
+
+<!-- ================= HERO SECTION ================= -->
 
 <section class="hero">
 
@@ -53,7 +73,6 @@ Explore Portfolio
 <a class="insta-btn" href="https://instagram.com/me_n_yashp" target="_blank">
 
 <i class="fa-brands fa-instagram"></i>
-
 Instagram
 
 </a>
@@ -62,14 +81,17 @@ Instagram
 
 </div>
 
-
 <div class="hero-img">
 
-<img src="/images/hero/yash.jpg" alt="Yash Patil">
+<img src="/images/hero/yash.jpg" alt="Portrait of Yash Patil">
 
 </div>
 
 </section>
+
+
+
+<!-- ================= FEATURED SECTION ================= -->
 
 <section class="hero-card reveal">
 
@@ -84,7 +106,12 @@ A collection of moments captured through my lens — from vibrant festivals and 
 </div>
 
 </section>
-<div class="filters reveal">
+
+
+
+<!-- ================= FILTER BUTTONS ================= -->
+
+<section class="filters reveal">
 
 <button onclick="filterGallery('all')">All</button>
 <button onclick="filterGallery('portraits')">Portraits</button>
@@ -92,20 +119,31 @@ A collection of moments captured through my lens — from vibrant festivals and 
 <button onclick="filterGallery('cosplay')">Cosplay</button>
 <button onclick="filterGallery('videos')">Videos</button>
 
-</div>
+</section>
 
 
-<div id="gallery" class="gallery"></div>
 
+<!-- ================= GALLERY ================= -->
+
+<section id="gallery" class="gallery"></section>
+
+
+
+<!-- ================= FULLSCREEN VIEWER ================= -->
 
 <div id="viewer" class="viewer">
 
-<button class="back-btn" onclick="closeViewer()">←</button>
+<button class="back-btn" onclick="closeViewer()" aria-label="Close Viewer">
+←
+</button>
 
-<img id="viewerImg">
+<img id="viewerImg" alt="Fullscreen view">
 
 </div>
 
+
+
+<!-- ================= SCRIPTS ================= -->
 
 <script src="script.js"></script>
 

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>About - Yash Studio</title>
 
 <link rel="stylesheet" href="style.css">
@@ -13,11 +15,13 @@
 <body>
 
 
+<!-- ================= NAVBAR ================= -->
+
 <nav class="glass-nav">
 
 <h2 class="logo">Yash Studio</h2>
 
-<div class="nav-links">
+<div class="nav-links" id="navLinks">
 
 <a href="/">Home</a>
 <a href="/about.html">About</a>
@@ -25,8 +29,19 @@
 
 </div>
 
+<div class="hamburger" onclick="toggleMenu()">
+
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
 </nav>
 
+
+
+<!-- ================= ABOUT SECTION ================= -->
 
 <section class="about-section">
 
@@ -35,7 +50,7 @@
 
 <div class="about-image">
 
-<img src="/images/hero/yash.jpg" alt="Yash Patil">
+<img src="/images/hero/yash.jpg" alt="Portrait of Yash Patil">
 
 </div>
 
@@ -49,52 +64,77 @@
 
 <p>
 
-Hello! I'm <b>Yash Patil</b>, a second-year BTech student at <b>VIT Mumbai</b> with a deep passion for photography, videography, and cinematography.  
-For me, visual storytelling is more than just taking pictures — it's about capturing emotions, energy, and moments that people want to remember forever.
+Hello! I'm <strong>Yash Patil</strong>, a second-year BTech student at <strong>VIT Mumbai</strong> with a deep passion for photography, videography, and cinematography.  
+For me, visual storytelling goes beyond simply taking pictures — it's about capturing emotions, energy, and moments that deserve to be remembered forever.
 
 </p>
-
 
 <p>
 
-Photography started as a curiosity for me, but quickly turned into something much bigger. I love observing the small details that make a moment special — lighting, expressions, movement, and atmosphere. Whether it's a vibrant festival, a cinematic street moment, or a portrait that tells a story, I enjoy turning those moments into lasting memories.
+Photography started as a curiosity but quickly became a passion. I love observing the small details that make a moment special — lighting, expressions, movement, and atmosphere. Whether it’s a vibrant festival, a cinematic street scene, or a portrait that tells a story, I enjoy turning those moments into meaningful visual memories.
 
 </p>
-
 
 <p>
 
-Videography and cinematography allow me to push creativity even further. Through camera movement, framing, and editing, I enjoy creating visuals that feel dynamic and immersive. I love experimenting with cinematic techniques to make videos feel more powerful and engaging.
+Videography and cinematography allow me to push creativity even further. Through camera movement, framing, and editing, I enjoy crafting visuals that feel immersive and dynamic. I love experimenting with cinematic techniques to create videos that feel powerful, emotional, and engaging.
 
 </p>
-
 
 <p>
 
-Outside of academics, I constantly explore new ways to improve my craft — experimenting with lighting, storytelling, editing styles, and creative compositions. Every shoot is an opportunity to learn something new and capture something unique.
+Beyond academics, I constantly explore ways to grow as a visual creator — experimenting with lighting setups, storytelling techniques, editing styles, and creative compositions. Every shoot becomes an opportunity to learn something new and capture something unique.
 
 </p>
-
 
 <p>
 
-My goal is to continue growing as a visual creator and build work that inspires people and preserves meaningful moments. Photography is not just about images for me — it’s about creating memories that last forever.
+My goal is to keep improving as a visual storyteller and build work that inspires people while preserving meaningful memories.  
+For me, photography is not just about images — it’s about creating moments that last forever.
 
 </p>
-
 
 <button class="btn" onclick="window.location.href='/'">
 View My Portfolio
 </button>
 
-
 </div>
-
 
 </div>
 
 </section>
 
+
+
+<!-- ================= SKILLS SECTION ================= -->
+
+<section class="skills-section reveal">
+
+<h2 class="section-title">Software Skills</h2>
+
+<div class="software-skills">
+
+
+
+<div class="software">
+<img src="/assets/adobe-lightroom-svgrepo-com.svg">
+</div>
+
+<div class="software">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/DaVinci_Resolve_Studio.png">
+</div>
+
+<div class="software">
+<img src="assets/capcut-svgrepo-com.svg">
+</div>
+
+</div>
+
+</section>
+
+
+
+<script src="script.js"></script>
 
 </body>
 

@@ -1,7 +1,11 @@
 /* =====================================================
    STORE GALLERY DATA
 ===================================================== */
+
 let imagesData = {}
+let currentImages = []
+let currentIndex = 0
+
 
 
 /* =====================================================
@@ -14,10 +18,9 @@ fetch("/api/gallery")
 
 imagesData = data
 
-// Remove hero folder so hero image does not appear in gallery
+// remove hero images from gallery
 delete imagesData.hero
 
-// Load all images by default
 loadGallery("all")
 
 })
@@ -25,15 +28,16 @@ loadGallery("all")
 
 
 /* =====================================================
-   LOAD GALLERY ITEMS
+   LOAD GALLERY
 ===================================================== */
 
 function loadGallery(category){
 
 const gallery = document.getElementById("gallery")
 
-// Clear previous images
 gallery.innerHTML = ""
+
+currentImages = []
 
 Object.keys(imagesData).forEach(cat => {
 
@@ -46,7 +50,7 @@ card.className = "card"
 
 
 
-/* ================= VIDEO SECTION ================= */
+/* ================= VIDEO ================= */
 
 if(cat === "videos"){
 
@@ -65,19 +69,26 @@ card.appendChild(video)
 
 
 
-/* ================= IMAGE SECTION ================= */
+/* ================= IMAGE ================= */
 
 else{
 
 let img = document.createElement("img")
 
-img.src = "/images/" + cat + "/" + file
+let src = "/images/" + cat + "/" + file
 
-// Lazy loading improves performance
+img.src = src
 img.loading = "lazy"
 
-// Open fullscreen viewer when clicked
-img.onclick = () => openViewer(img.src)
+// fade-in animation
+img.onload = () => {
+img.classList.add("loaded")
+}
+
+// store images for swipe navigation
+currentImages.push(src)
+
+img.onclick = () => openViewer(src)
 
 card.appendChild(img)
 
@@ -85,10 +96,10 @@ card.appendChild(img)
 
 
 
-// Add card to gallery
+// add card to gallery
 gallery.appendChild(card)
 
-// Add tilt animation
+// tilt animation
 addTiltEffect(card)
 
 })
@@ -102,7 +113,7 @@ addTiltEffect(card)
 
 
 /* =====================================================
-   FILTER BUTTON HANDLER
+   FILTER BUTTON
 ===================================================== */
 
 function filterGallery(category){
@@ -114,7 +125,7 @@ loadGallery(category)
 
 
 /* =====================================================
-   FULLSCREEN IMAGE VIEWER
+   OPEN FULLSCREEN IMAGE
 ===================================================== */
 
 function openViewer(src){
@@ -125,16 +136,58 @@ viewer.style.display = "flex"
 
 document.getElementById("viewerImg").src = src
 
-// Hide navbar
+currentIndex = currentImages.indexOf(src)
+
+// hide navbar
 const nav = document.querySelector(".glass-nav")
 if(nav) nav.style.display = "none"
 
-// Disable scrolling
+// disable scrolling
 document.body.style.overflow = "hidden"
 
 }
 
 
+
+/* =====================================================
+   NEXT IMAGE
+===================================================== */
+
+function nextImage(){
+
+if(currentIndex < currentImages.length - 1){
+
+currentIndex++
+
+document.getElementById("viewerImg").src = currentImages[currentIndex]
+
+}
+
+}
+
+
+
+/* =====================================================
+   PREVIOUS IMAGE
+===================================================== */
+
+function prevImage(){
+
+if(currentIndex > 0){
+
+currentIndex--
+
+document.getElementById("viewerImg").src = currentImages[currentIndex]
+
+}
+
+}
+
+
+
+/* =====================================================
+   CLOSE FULLSCREEN VIEWER
+===================================================== */
 
 function closeViewer(){
 
@@ -142,11 +195,11 @@ const viewer = document.getElementById("viewer")
 
 viewer.style.display = "none"
 
-// Show navbar again
+// show navbar again
 const nav = document.querySelector(".glass-nav")
 if(nav) nav.style.display = "flex"
 
-// Enable scrolling
+// enable scrolling
 document.body.style.overflow = "auto"
 
 }
@@ -154,16 +207,12 @@ document.body.style.overflow = "auto"
 
 
 /* =====================================================
-   ESC KEY CLOSE VIEWER
+   ESC CLOSE
 ===================================================== */
 
 document.addEventListener("keydown", function(e){
 
-if(e.key === "Escape"){
-
-closeViewer()
-
-}
+if(e.key === "Escape") closeViewer()
 
 })
 
@@ -187,7 +236,7 @@ behavior: "smooth"
 
 
 /* =====================================================
-   3D HOVER TILT EFFECT
+   3D HOVER TILT
 ===================================================== */
 
 function addTiltEffect(card){
@@ -221,7 +270,7 @@ card.style.transform = "rotateX(0) rotateY(0)"
 
 
 /* =====================================================
-   SCROLL REVEAL ANIMATION
+   SCROLL REVEAL
 ===================================================== */
 
 function reveal(){
@@ -243,5 +292,67 @@ reveals[i].classList.add("active")
 
 }
 
-// Run reveal on scroll
 window.addEventListener("scroll", reveal)
+
+
+
+/* =====================================================
+   MOBILE HAMBURGER MENU
+===================================================== */
+
+function toggleMenu(){
+
+const nav = document.getElementById("navLinks")
+
+nav.classList.toggle("show")
+
+}
+
+
+
+/* =====================================================
+   SWIPE NAVIGATION FOR FULLSCREEN
+===================================================== */
+
+let startX = 0
+let endX = 0
+
+const viewer = document.getElementById("viewer")
+
+if(viewer){
+
+viewer.addEventListener("touchstart", e => {
+
+startX = e.changedTouches[0].screenX
+
+})
+
+viewer.addEventListener("touchend", e => {
+
+endX = e.changedTouches[0].screenX
+
+handleSwipe()
+
+})
+
+}
+
+function handleSwipe(){
+
+const diff = startX - endX
+
+if(Math.abs(diff) > 60){
+
+if(diff > 0){
+
+nextImage()
+
+}else{
+
+prevImage()
+
+}
+
+}
+
+}
