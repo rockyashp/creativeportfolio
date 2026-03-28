@@ -14,52 +14,52 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 // API to get images
 app.get("/api/gallery", (req, res) => {
 
-const imagesDir = path.join(__dirname, "images");
+  const imagesDir = path.join(__dirname, "images");
 
-let gallery = {};
+  let gallery = {};
 
-try{
+  try {
 
-const folders = fs.readdirSync(imagesDir);
+    const folders = fs.readdirSync(imagesDir);
 
-folders.forEach(folder => {
+    folders.forEach(folder => {
 
-const folderPath = path.join(imagesDir, folder);
+      const folderPath = path.join(imagesDir, folder);
 
-if(fs.lstatSync(folderPath).isDirectory()){
+      if (fs.lstatSync(folderPath).isDirectory()) {
 
-const files = fs.readdirSync(folderPath).filter(file =>
+        const files = fs.readdirSync(folderPath).filter(file =>
 
-file.endsWith(".jpg") ||
-file.endsWith(".jpeg") ||
-file.endsWith(".png") ||
-file.endsWith(".webp") ||
-file.endsWith(".mp4") ||
-file.endsWith(".mov")
+          file.endsWith(".jpg") ||
+          file.endsWith(".jpeg") ||
+          file.endsWith(".png") ||
+          file.endsWith(".webp") ||
+          file.endsWith(".mp4") ||
+          file.endsWith(".mov")
 
-);
+        );
 
-gallery[folder] = files;
+        gallery[folder] = files;
 
-}
+      }
 
-});
+    });
 
-res.json(gallery);
+    res.json(gallery);
 
-}
-catch(err){
+  }
+  catch (err) {
 
-console.error(err);
-res.status(500).json({error:"Could not read images folder"});
+    console.error(err);
+    res.status(500).json({ error: "Could not read images folder" });
 
-}
+  }
 
 });
 
 // start server
 app.listen(PORT, () => {
 
-console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 
 });

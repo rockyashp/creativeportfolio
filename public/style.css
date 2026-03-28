@@ -311,9 +311,8 @@ body::after{
 }
 
 .headline-word.outline{
-  -webkit-text-stroke:2px rgba(255,255,255,0.5);
-  -webkit-text-fill-color:transparent;
-  color:transparent;
+  color: #fff;
+  font-weight: 800;
 }
 
 .headline-word.accent{
