@@ -5,14 +5,19 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Yash Patil — photographer, videographer, and cinematographer. Explore visual stories captured through light.">
 
-<title>Yash's DEN</title>
+<title>Yash Studio — Visual Storyteller</title>
 
-<!-- Font Awesome Icons -->
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Icons -->
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Main Styles -->
+<!-- Styles -->
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -21,7 +26,7 @@
 
 <!-- ================= NAVBAR ================= -->
 
-<nav class="glass-nav">
+<nav class="glass-nav" id="navbar">
 
 <h2 class="logo">Yash Studio</h2>
 
@@ -29,62 +34,100 @@
 
 <a href="/">Home</a>
 <a href="/about.html">About</a>
-<a href="#gallery">Portfolio</a>
+<a href="#portfolio">Portfolio</a>
 
 </div>
 
 <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu">
-
 <span></span>
 <span></span>
 <span></span>
-
 </div>
 
 </nav>
 
 
 
-<!-- ================= HERO SECTION ================= -->
+<!-- ================= CINEMATIC HERO ================= -->
 
-<section class="hero">
+<section class="cinematic-hero" id="heroSection">
 
-<div class="hero-text">
+<!-- film grain overlay -->
+<div class="grain"></div>
 
-<span class="tag">
-PHOTOGRAPHER • VIDEOGRAPHER • CINEMATOGRAPHER
-</span>
+<!-- mouse-tracked spotlight -->
+<div class="hero-spotlight" id="heroSpotlight"></div>
 
-<h1>
-Visual Stories <br>
-Captured In Light
+<!-- large background portrait -->
+<div class="hero-portrait" id="heroPortrait">
+<img src="/images/hero/yash.jpg" alt="Yash Patil">
+</div>
+
+<!-- dark vignette overlay -->
+<div class="hero-vignette"></div>
+
+<!-- main content -->
+<div class="hero-content">
+
+<div class="hero-tag-line">
+<span class="hero-tag" data-reveal>PHOTOGRAPHER</span>
+<span class="hero-dot">&bull;</span>
+<span class="hero-tag" data-reveal>VIDEOGRAPHER</span>
+<span class="hero-dot">&bull;</span>
+<span class="hero-tag" data-reveal>CINEMATOGRAPHER</span>
+</div>
+
+<h1 class="hero-headline">
+<span class="headline-word" data-reveal style="--delay:0.1s">Visual</span>
+<span class="headline-word" data-reveal style="--delay:0.25s">Stories</span>
+<br>
+<span class="headline-word outline" data-reveal style="--delay:0.4s">Captured</span>
+<span class="headline-word" data-reveal style="--delay:0.55s">In</span>
+<span class="headline-word accent" data-reveal style="--delay:0.7s">Light</span>
 </h1>
 
-<p>
-I'm Yash Patil, a photographer and videographer exploring the world one frame at a time — capturing emotions, moments, and memories through my lens.
+<p class="hero-desc" data-reveal style="--delay:0.9s">
+Exploring the world one frame at a time — capturing emotions, moments, and memories through my lens.
 </p>
 
-<div class="hero-buttons">
+<div class="hero-actions" data-reveal style="--delay:1.1s">
 
-<button class="btn" onclick="scrollToGallery()">
-Explore Portfolio
+<button class="btn hero-btn" onclick="scrollToGallery()" id="explore-btn">
+<span>Explore Portfolio</span>
+<i class="fa-solid fa-arrow-down"></i>
 </button>
 
-<a class="insta-btn" href="https://instagram.com/me_n_yashp" target="_blank">
-
+<a class="insta-btn" href="https://instagram.com/me_n_yashp" target="_blank" id="instagram-btn">
 <i class="fa-brands fa-instagram"></i>
-Instagram
-
+<span>Instagram</span>
 </a>
 
 </div>
 
 </div>
 
-<div class="hero-img">
+<!-- scrolling marquee at bottom -->
+<div class="hero-marquee">
+<div class="marquee-track">
+<span>VISUAL STORIES &mdash;</span>
+<span>PHOTOGRAPHY &mdash;</span>
+<span>CINEMATOGRAPHY &mdash;</span>
+<span>YASH PATIL &mdash;</span>
+<span>VISUAL STORIES &mdash;</span>
+<span>PHOTOGRAPHY &mdash;</span>
+<span>CINEMATOGRAPHY &mdash;</span>
+<span>YASH PATIL &mdash;</span>
+<span>VISUAL STORIES &mdash;</span>
+<span>PHOTOGRAPHY &mdash;</span>
+<span>CINEMATOGRAPHY &mdash;</span>
+<span>YASH PATIL &mdash;</span>
+</div>
+</div>
 
-<img src="/images/hero/yash.jpg" alt="Portrait of Yash Patil">
-
+<!-- scroll indicator -->
+<div class="scroll-indicator" data-reveal style="--delay:1.4s">
+<div class="scroll-line"></div>
+<span>SCROLL</span>
 </div>
 
 </section>
@@ -93,7 +136,7 @@ Instagram
 
 <!-- ================= FEATURED SECTION ================= -->
 
-<section class="hero-card reveal">
+<section class="hero-card reveal" id="portfolio" style="scroll-margin-top: 100px;">
 
 <div class="glass-card">
 
@@ -111,13 +154,13 @@ A collection of moments captured through my lens — from vibrant festivals and 
 
 <!-- ================= FILTER BUTTONS ================= -->
 
-<section class="filters reveal">
+<section class="filters reveal" id="filterBar" style="scroll-margin-top: 100px;">
 
-<button onclick="filterGallery('all')">All</button>
-<button onclick="filterGallery('portraits')">Portraits</button>
-<button onclick="filterGallery('events')">Events</button>
-<button onclick="filterGallery('ganpati')">GanpatiBappa</button>
-<button onclick="filterGallery('videos')">Videos</button>
+<button class="active" onclick="filterGallery('all', this)" id="filter-all">All</button>
+<button onclick="filterGallery('portraits', this)" id="filter-portraits">Portraits</button>
+<button onclick="filterGallery('events', this)" id="filter-events">Events</button>
+<button onclick="filterGallery('ganpati', this)" id="filter-ganpati">Ganpati Bappa</button>
+<button onclick="filterGallery('videos', this)" id="filter-videos">Videos</button>
 
 </section>
 
@@ -133,11 +176,19 @@ A collection of moments captured through my lens — from vibrant festivals and 
 
 <div id="viewer" class="viewer">
 
-<button class="back-btn" onclick="closeViewer()" aria-label="Close Viewer">
-←
+<button class="back-btn" onclick="closeViewer()" aria-label="Close Viewer" id="viewer-close">
+<i class="fa-solid fa-xmark"></i>
+</button>
+
+<button class="viewer-nav viewer-prev" onclick="prevImage()" aria-label="Previous Image" id="viewer-prev">
+<i class="fa-solid fa-chevron-left"></i>
 </button>
 
 <img id="viewerImg" alt="Fullscreen view">
+
+<button class="viewer-nav viewer-next" onclick="nextImage()" aria-label="Next Image" id="viewer-next">
+<i class="fa-solid fa-chevron-right"></i>
+</button>
 
 </div>
 
